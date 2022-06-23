@@ -5,7 +5,7 @@ def peso():
     for i in range(3):
         p =[]
         for j in range(2):
-            p.append(random.randint(-2,2))
+            p.append(random.randint(-1,1))
         peso.append(p)
     return peso
 
@@ -13,9 +13,9 @@ def biass():
     bias = []
     b = []
     for i in range(2):
-        b.append(random.randint(-2,2))
+        b.append(random.randint(-1,1))
     bias.append(b)
-    b = [random.randint(-2,2)]
+    b = [random.randint(-1,1)]
     bias.append(b)
     return bias
 
