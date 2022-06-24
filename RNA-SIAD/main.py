@@ -22,6 +22,10 @@ norm_v_esperado = [(x-min(v_esperado))/(max(v_esperado)-min(v_esperado)) for x i
 # gerando aleatoriamento os primeiros pesos e bias
 pesos = peso()  # peso = [[x1n1.x2n1],[x1n2,x2n2],[n1n3,n2n3]]
 bias = biass()  # bias = [[n1,n2],[n3]]
+# melhores valores do treinamento - acuracea - >94%
+# pesos = [[890.4624297893596, 19.243137177006844], [892.4624297893569, 21.24313717700708], [-2.265637799599509, 2.734362200400491]]
+# bias = [[893.462429789353, -69.66110636602083], [-0.26563779959950795]]
+
 
 # entrando no loop com quantidade de epocas
 for q in range(epocas):
@@ -46,7 +50,14 @@ for q in range(epocas):
             pesos[n][1] = pesos[n][1] + tx_aprend * erro_peso_N1 * (saida_N3*(1-saida_N3)) * saida_N2
         pesos[2][0] = pesos[2][0] + tx_aprend * erro * (saida_N3*(1-saida_N3)) * saida_N3 
         pesos[2][1] = pesos[2][1] + tx_aprend * erro * (saida_N3*(1-saida_N3)) * saida_N3
-        # Calcula o erro da v_esperado calculada
         
-    print(f'epoca = {q}\nsaida N3 = {saida_N3}\nvalor esperado = {norm_v_esperado[-1]}\nerro = {erro}')
+        bias[0][0] = bias[0][0] + tx_aprend * erro_peso_N1 * (saida_N3*(1-saida_N3)) * saida_N1
+        bias[0][1] = bias[0][1] + tx_aprend * erro_peso_N2 * (saida_N3*(1-saida_N3)) * saida_N2
+        bias[1][0] = bias[1][0] + tx_aprend * erro * (saida_N3*(1-saida_N3)) * saida_N3
+
+
+        
+    print(f'epoca = {q}\nsaida N3 = {saida_N3}\nvalor esperado = {norm_v_esperado[-1]}\nerro = {abs(erro)}')
+print(abs(erro)*100/saida_N3)
+print(pesos, bias)
 
