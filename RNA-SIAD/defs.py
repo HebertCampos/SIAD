@@ -38,3 +38,11 @@ def saidaN(somatorio, bias):
             ns.append(n)
         atv.append(ns)
     return atv
+
+def denormalize(y, x):
+    y_max_normalize = max(x)
+    y_min_normalize = min(x)
+    
+    final = (y)*(y_max_normalize - y_min_normalize) + y_min_normalize 
+    
+    return final
