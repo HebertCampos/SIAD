@@ -62,4 +62,3 @@ for q in range(epocas):
 print(f'{100-porcent:.2f}% item {it}\nsaida N3 = {s}\nvalor esperado = {v}\nerro = {v-s}\n')
 # print(max(v_esperado), min(v_esperado), norm_v_esperado)
 print(pesos, bias)
-

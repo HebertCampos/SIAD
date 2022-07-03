@@ -27,3 +27,5 @@ Material extra de apoio:
 https://www.gsigma.ufsc.br/~popov/aulas/rna/neuronio_implementacao/
 
 http://www.lps.usp.br/hae/apostila/redeneural.pdf
+
+https://www.maxwell.vrac.puc-rio.br/32823/32823_4.PDF

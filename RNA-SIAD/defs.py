@@ -46,3 +46,6 @@ def denormalize(y, x):
     final = (y)*(y_max_normalize - y_min_normalize) + y_min_normalize 
     
     return final
+
+def derivadaSigmoid(value):
+    return value*(1-value)
