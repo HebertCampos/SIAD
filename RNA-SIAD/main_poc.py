@@ -55,9 +55,9 @@ for q in range(epocas):
         pesos[2][1] = pesos[2][1] + tx_aprend * erro * derivadaSaidaN3 * saida_N2
         
         #BIAS
-        # bias[0][0] = bias[0][0] + tx_aprend * erro_peso_N1 * derivadaSaidaN3 * norm_x1[it]
-        # bias[0][1] = bias[0][1] + tx_aprend * erro_peso_N2 * derivadaSaidaN3 * norm_x2[it]
-        # bias[1][0] = bias[1][0] + tx_aprend * erro * derivadaSaidaN3 * saida_N3
+        bias[0][0] = bias[0][0] + tx_aprend * erro_peso_N1 * derivadaSaidaN3 * norm_x1[it]
+        bias[0][1] = bias[0][1] + tx_aprend * erro_peso_N2 * derivadaSaidaN3 * norm_x2[it]
+        bias[1][0] = bias[1][0] + tx_aprend * erro * derivadaSaidaN3 * saida_N3
         
         #teste: https://medium.com/ensina-ai/redes-neurais-perceptron-multicamadas-e-o-algoritmo-backpropagation-eaf89778f5b8
         #fórmula de atualização do bias: b² <- b²-ng² => 2 é a camada
@@ -68,14 +68,12 @@ for q in range(epocas):
         # bias[1][0] = bias[1][0] - (tx_aprend*(derivadaSigmoid(erro)/derivadaSigmoid(bias[1][0])))
         
         #bias = bias + taxa + erro do neuronio * funç sigmoid do primeiro neuronio 1 * entrada do primeiro neuronio
-        # bias[0][0] = bias[0][0] + tx_aprend * erro_peso_N1 * (1/(1+math.exp((norm_x1[it] + bias[0][0])))) * norm_x1[it]
-        # bias[0][1] = bias[0][1] + tx_aprend * erro_peso_N2 * (1/(1+math.exp((norm_x1[it] + bias[0][1])))) * norm_x1[it]
-        # bias[1][0] = bias[1][0] + tx_aprend * erro_peso_N2 * (1/(1+math.exp((norm_x1[it] + bias[1][0])))) * norm_x1[it]
+        #bias[0][0] = bias[0][0] + tx_aprend * erro_peso_N1 * (1/(1+math.exp((norm_x1[it] + bias[0][0])))) * norm_x1[it]
+        #bias[0][1] = bias[0][1] + tx_aprend * erro_peso_N2 * (1/(1+math.exp((norm_x1[it] + bias[0][1])))) * norm_x1[it]
+        #bias[1][0] = bias[1][0] + tx_aprend * erro * (1/(1+math.exp((norm_x1[it] + bias[1][0])))) * norm_x1[it]
         
-        #
-        bias[0][0] = bias[0][0] + tx_aprend
-        bias[0][1] = bias[0][1] + tx_aprend
-        bias[1][0] = bias[1][0] + tx_aprend
+        # #Dedução do Livro:-nGY
+        # bias[0][0] =-tx_aprend*derivadaSigmoid(erro_peso_N1)/derivadaSigmoid(bias[0][0])*norm_x1[it]
         
         porcent = erro/saida_N3*100
         s=denormalize(saida_N3, v_esperado)
