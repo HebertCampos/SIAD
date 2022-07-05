@@ -47,7 +47,8 @@ for q in range(epocas):
         for n in range(2):
             pesos[n][0] = pesos[n][0] + tx_aprend * erro_peso_N1 * (saida_N3*(1-saida_N3)) * norm_x1[it]
         for n in range(2):
-            pesos[n][1] = pesos[n][1] + tx_aprend * erro_peso_N1 * (saida_N3*(1-saida_N3)) * norm_x2[it]
+            pesos[n][1] = pesos[n][1] + tx_aprend * erro_peso_N2 * (saida_N3*(1-saida_N3)) * norm_x2[it]
+        
         pesos[2][0] = pesos[2][0] + tx_aprend * erro * (saida_N3*(1-saida_N3)) * saida_N1 
         pesos[2][1] = pesos[2][1] + tx_aprend * erro * (saida_N3*(1-saida_N3)) * saida_N2
         
@@ -57,8 +58,9 @@ for q in range(epocas):
         porcent = erro/saida_N3*100
         s=denormalize(saida_N3, v_esperado)
         v=denormalize(norm_v_esperado[it], v_esperado)
-        # print(f'{100-porcent:.2f}% item {it}\nsaida N3 = {s}\nvalor esperado = {v}\nerro = {v-s}\n')
-        
-print(f'{100-porcent:.2f}% item {it}\nsaida N3 = {s}\nvalor esperado = {v}\nerro = {v-s}\n')
+        print(f'{100-porcent:.2f}% item {it}\nsaida N3 = {s}\nvalor esperado = {v}\nerro = {v-s}\n')
+
+print()
+#print(f'{100-porcent:.2f}% item {it}\nsaida N3 = {s}\nvalor esperado = {v}\nerro = {v-s}\n')
 # print(max(v_esperado), min(v_esperado), norm_v_esperado)
 print(pesos, bias)
