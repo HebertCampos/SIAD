@@ -36,4 +36,7 @@ saida_neuronio_saida = saidaNeuroFunc(neuronios_saida, [saida_neuronios_ocultos]
 
 if (saida_neuronio_saida >= normalizado_valor_esperado[0][interacao]-0.01) and (saida_neuronio_saida <= normalizado_valor_esperado[0][interacao]+0.01):
     interacao += 1
+
+else:
+    erro = normalizado_valor_esperado[0][interacao] - saida_neuronio_saida
     
