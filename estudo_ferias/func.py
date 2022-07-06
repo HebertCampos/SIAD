@@ -25,3 +25,13 @@ def saidaNeuroFunc(n, e, p, b, index):
             s += e[i][index] * p[index][i]
         saida.append(1/(1+math.exp(-(s + b[n]))))
     return saida
+
+def normalizacaoFunk(x):
+    entrada = []
+    for e in range(len(x)):
+        resultado = []
+        for i in x[e]:
+            norma = (i - min(x[e])) / (max(x[e]) - min(x[e]))
+            resultado.append(norma)
+        entrada.append(resultado)
+    return entrada
