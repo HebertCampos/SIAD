@@ -148,6 +148,10 @@ def denormalize(y, x):
 # Test Backprop on Seeds dataset
 seed(1)
 dataset = x1
+init = inicializa_rede(x1[0], 2, 1)
+
+print(init)
+
 minmax = dataset_minmax(dataset)
 normalizar(dataset, minmax)
 
