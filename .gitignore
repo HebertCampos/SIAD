@@ -1,9 +1,3 @@
-#arq
-rna.py
-estudo_ferias/
-func.py
-rna_ferias.py
-
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -134,3 +128,8 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+#arq
+rna.py
+estudo_ferias/
+func.py
+rna_ferias.py
