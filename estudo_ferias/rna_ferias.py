@@ -1,11 +1,14 @@
 from func import biasFunc, normalizacaoFunk, pesosFunc, saidaNeuroFunc
 
 # entradas
-x1 = [11, 11, 10]
-x2 = [10, 11, 10]
-x3 = [11, 11, 10]
-entradas = [x1, x2, x3]
-valor_esperado = [[10, 11, 10]]
+entrada_1 = [11, 11, 10]
+entrada_2 = [10, 11, 10]
+entrada_3 = [11, 11, 10]
+esperado = [10, 11, 10]
+
+entradas = [entrada_1, entrada_2, entrada_3]
+
+valor_esperado = [esperado]
 
 normalizado_entradas = normalizacaoFunk(entradas)
 normalizado_valor_esperado = normalizacaoFunk(valor_esperado)
@@ -31,3 +34,6 @@ saida_neuronios_ocultos = saidaNeuroFunc(neuronios_ocultos_1,entradas, pesos_ent
 
 saida_neuronio_saida = saidaNeuroFunc(neuronios_saida, [saida_neuronios_ocultos], pesos_entradas_para_saida,[bias_neuronios[-1]], 0)
 
+if (saida_neuronio_saida >= normalizado_valor_esperado[0][interacao]-0.01) and (saida_neuronio_saida <= normalizado_valor_esperado[0][interacao]+0.01):
+    interacao += 1
+    
