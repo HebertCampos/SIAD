@@ -131,3 +131,5 @@ dmypy.json
 #arq
 rna.py
 estudo_ferias/
+func.py
+rna_ferias.py
