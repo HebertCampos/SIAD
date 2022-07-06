@@ -9,3 +9,9 @@ def pesosFunc(x,y):
             p.append(random.randint(-2,2))
         pesos.append(p)
     return pesos
+
+def biasFunc(n):
+    b = []
+    for x in range(n):
+        b.append(random.randint(-2,2))
+    return b

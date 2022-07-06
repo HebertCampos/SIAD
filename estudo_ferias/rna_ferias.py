@@ -1,4 +1,4 @@
-from func import pesosFunc
+from func import biasFunc, pesosFunc
 
 # entradas
 x1 = []
@@ -10,6 +10,8 @@ v_esperdo = []
 
 # quantidade de neuronios camada oculta 01
 neuronios_ocultos_1 = 2
+neuronios_saida = 1
 
 # pesos
-pesos_entradas_para_oculto = pesosFunc(len(entradas), neuronios_ocultos_1)
+pesos_entradas_para_oculto = pesosFunc(neuronios_ocultos_1,len(entradas))
+bias_neuronios = biasFunc(neuronios_ocultos_1+neuronios_saida)
