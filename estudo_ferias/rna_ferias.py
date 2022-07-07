@@ -27,7 +27,7 @@ pesos_entradas_para_saida = pesosFunc(neuronios_saida, neuronios_ocultos_1)
 bias_neuronios = biasFunc(neuronios_ocultos_1+neuronios_saida)
 
 # taxa de aprendizado
-tx_aprendizado = 0.2
+tx_aprendizado = 2
 
 # entrada que esta sendo treinda
 interacao = 0
@@ -38,10 +38,11 @@ while True:
         # saida camada oculta
         saida_neuronios_ocultos = saidaNeuroFunc(neuronios_ocultos_1,normalizado_entradas, pesos_entradas_para_oculto, bias_neuronios[:-1],  interacao)
 
-        saida_neuronio_saida = saidaNeuroFunc(neuronios_saida, [saida_neuronios_ocultos], pesos_entradas_para_saida,[bias_neuronios[-1]], 0)
+        saida_neuronio_saida = saidaNeuroSaidaFunc(neuronios_saida, [saida_neuronios_ocultos], pesos_entradas_para_saida,[bias_neuronios[-1]], 0)
 
         if (saida_neuronio_saida[0] >= normalizado_valor_esperado[0][interacao]-0.01) and (saida_neuronio_saida[0] <= normalizado_valor_esperado[0][interacao]+0.01):
             interacao += 1
+            print(interacao)
 
         else:
             erro = normalizado_valor_esperado[0][interacao] - saida_neuronio_saida[0]
@@ -52,6 +53,13 @@ while True:
             delta_bias_oculto = delta_erro_oculto * tx_aprendizado
             delta_bias_saida = delta_erro_saida * tx_aprendizado
             bias_neuronios = [delta_bias_oculto, delta_bias_oculto, delta_bias_saida]
+            
+        if interacao > len(entradas[0])-1:
+            interacao = 0
+            epoca -= 1
+            print(epoca)
+            # print(pesos, bias)
+            
     else: break
     
 print([pesos_entradas_para_oculto, pesos_entradas_para_saida], bias_neuronios, saida_neuronio_saida)
