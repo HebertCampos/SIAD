@@ -35,3 +35,13 @@ def normalizacaoFunk(x):
             resultado.append(norma)
         entrada.append(resultado)
     return entrada
+
+def delta_camada_oculta(s, w, des):
+    soma = 0
+    for s in range(len(w)):
+        for i in range(len(w[0])):
+            soma += i*des
+    return s*(1-s)*s
+
+def ajuste_pesos():
+    pass

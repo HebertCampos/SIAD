@@ -1,4 +1,4 @@
-from func import biasFunc, normalizacaoFunk, pesosFunc, saidaNeuroFunc
+from func import ajuste_pesos, biasFunc, delta_camada_oculta, normalizacaoFunk, pesosFunc, saidaNeuroFunc
 
 # entradas
 entrada_1 = [11, 11, 10]
@@ -39,4 +39,5 @@ if (saida_neuronio_saida[0] >= normalizado_valor_esperado[0][interacao]-0.01) an
 
 else:
     erro = normalizado_valor_esperado[0][interacao] - saida_neuronio_saida[0]
-    print(erro)
+    delta_erro_saida = saida_neuronio_saida[0]*(1-saida_neuronio_saida[0])*erro
+    delta_erro_oculto = delta_camada_oculta(saida_neuronio_saida[0], pesos_entradas_para_oculto, delta_erro_saida)
