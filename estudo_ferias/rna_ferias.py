@@ -31,24 +31,28 @@ tx_aprendizado = 0.2
 
 # entrada que esta sendo treinda
 interacao = 0
+epoca = 1
 
-# saida camada oculta
-saida_neuronios_ocultos = saidaNeuroFunc(neuronios_ocultos_1,normalizado_entradas, pesos_entradas_para_oculto, bias_neuronios[:-1],  interacao)
+while True:
+    if epoca > 0:
+        # saida camada oculta
+        saida_neuronios_ocultos = saidaNeuroFunc(neuronios_ocultos_1,normalizado_entradas, pesos_entradas_para_oculto, bias_neuronios[:-1],  interacao)
 
-saida_neuronio_saida = saidaNeuroFunc(neuronios_saida, [saida_neuronios_ocultos], pesos_entradas_para_saida,[bias_neuronios[-1]], 0)
+        saida_neuronio_saida = saidaNeuroFunc(neuronios_saida, [saida_neuronios_ocultos], pesos_entradas_para_saida,[bias_neuronios[-1]], 0)
 
-if (saida_neuronio_saida[0] >= normalizado_valor_esperado[0][interacao]-0.01) and (saida_neuronio_saida[0] <= normalizado_valor_esperado[0][interacao]+0.01):
-    interacao += 1
+        if (saida_neuronio_saida[0] >= normalizado_valor_esperado[0][interacao]-0.01) and (saida_neuronio_saida[0] <= normalizado_valor_esperado[0][interacao]+0.01):
+            interacao += 1
 
-else:
-    erro = normalizado_valor_esperado[0][interacao] - saida_neuronio_saida[0]
-    delta_erro_saida = saida_neuronio_saida[0]*(1-saida_neuronio_saida[0])*erro
-    delta_erro_oculto = deltaCamadaOcultaFunc(saida_neuronio_saida[0], pesos_entradas_para_oculto, delta_erro_saida)
-    pesos_entradas_para_oculto = ajustePesosOcultoFunc(pesos_entradas_para_oculto, tx_aprendizado, normalizado_entradas, delta_erro_oculto, interacao)
-    pesos_entradas_para_saida = ajustePesosSaidaFunc(pesos_entradas_para_saida, tx_aprendizado, [saida_neuronios_ocultos], delta_erro_saida, 0)
-    delta_bias_oculto = delta_erro_oculto * tx_aprendizado
-    delta_bias_saida = delta_erro_saida * tx_aprendizado
-    bias_neuronios = [delta_bias_oculto, delta_bias_oculto, delta_bias_saida]
+        else:
+            erro = normalizado_valor_esperado[0][interacao] - saida_neuronio_saida[0]
+            delta_erro_saida = saida_neuronio_saida[0]*(1-saida_neuronio_saida[0])*erro
+            delta_erro_oculto = deltaCamadaOcultaFunc(saida_neuronio_saida[0], pesos_entradas_para_oculto, delta_erro_saida)
+            pesos_entradas_para_oculto = ajustePesosOcultoFunc(pesos_entradas_para_oculto, tx_aprendizado, normalizado_entradas, delta_erro_oculto, interacao)
+            pesos_entradas_para_saida = ajustePesosSaidaFunc(pesos_entradas_para_saida, tx_aprendizado, [saida_neuronios_ocultos], delta_erro_saida, 0)
+            delta_bias_oculto = delta_erro_oculto * tx_aprendizado
+            delta_bias_saida = delta_erro_saida * tx_aprendizado
+            bias_neuronios = [delta_bias_oculto, delta_bias_oculto, delta_bias_saida]
+    else: break
     
 print([pesos_entradas_para_oculto, pesos_entradas_para_saida], bias_neuronios, saida_neuronio_saida)
     
