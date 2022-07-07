@@ -26,7 +26,7 @@ def saidaNeuroFunc(n, e, p, b, index):
         saida.append(1/(1+math.exp(-(s + b[n]))))
     return saida
 
-def normalizacaoFunk(x):
+def normalizacaoFunc(x):
     entrada = []
     for e in range(len(x)):
         resultado = []
@@ -36,12 +36,27 @@ def normalizacaoFunk(x):
         entrada.append(resultado)
     return entrada
 
-def delta_camada_oculta(s, w, des):
+def deltaCamadaOcultaFunc(s, w, des):
     soma = 0
     for s in range(len(w)):
         for i in range(len(w[0])):
             soma += i*des
     return s*(1-s)*s
 
-def ajuste_pesos():
-    pass
+def ajustePesosOcultoFunc(w, a, e, d, index):
+    peso = []
+    for x in range(len(w)):
+        p = []
+        for y in range(len(e)):
+            p.append(w[x][y] + a * e[y][index] * d)
+        peso.append(p)
+    return peso
+
+def ajustePesosSaidaFunc(w, a, e, d, index):
+    peso = []
+    for x in range(len(w)):
+        p = []
+        for y in range(len(e[index])):
+            p.append(w[x][y] + a * e[index][y] * d)
+        peso.append(p)
+    return peso
