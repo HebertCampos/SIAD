@@ -31,9 +31,14 @@ tx_aprendizado = 2
 
 # entrada que esta sendo treinda
 interacao = 0
-epoca = 1
+epoca = 100
+
+saidas = []
 
 while True:
+    if len(saidas) > len(esperado):
+        saidas = []
+    
     if epoca > 0:
         # saida camada oculta
         saida_neuronios_ocultos = saidaNeuroFunc(neuronios_ocultos_1,normalizado_entradas, pesos_entradas_para_oculto, bias_neuronios[:-1],  interacao)
@@ -42,7 +47,8 @@ while True:
 
         if (saida_neuronio_saida[0] >= normalizado_valor_esperado[0][interacao]-0.01) and (saida_neuronio_saida[0] <= normalizado_valor_esperado[0][interacao]+0.01):
             interacao += 1
-            print(interacao)
+            saidas.append(denormalize(saida_neuronio_saida[0] ,valor_esperado[0]))
+            print(f'i {interacao}')
 
         else:
             erro = normalizado_valor_esperado[0][interacao] - saida_neuronio_saida[0]
@@ -57,10 +63,12 @@ while True:
         if interacao > len(entradas[0])-1:
             interacao = 0
             epoca -= 1
-            print(epoca)
-            # print(pesos, bias)
+            print(f'e {epoca}')
+            print([pesos_entradas_para_oculto, pesos_entradas_para_saida], bias_neuronios, saida_neuronio_saida)
+
             
     else: break
     
 print([pesos_entradas_para_oculto, pesos_entradas_para_saida], bias_neuronios, saida_neuronio_saida)
+print(saidas)
     

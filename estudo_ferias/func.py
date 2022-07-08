@@ -69,3 +69,9 @@ def ajustePesosSaidaFunc(w, a, e, d, index):
             p.append(w[x][y] + a * e[index][y] * d)
         peso.append(p)
     return peso
+
+def denormalize(y, x):
+    y_max_normalize = max(x)
+    y_min_normalize = min(x)
+    final = (y)*(y_max_normalize - y_min_normalize) + y_min_normalize 
+    return final
